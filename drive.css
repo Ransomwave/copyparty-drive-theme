@@ -1,0 +1,975 @@
+/* copyparty-drive-theme: a Google Drive-flavoured skin for copyparty's file browser */
+
+html:root {
+  --d-bg: #f8fafd;
+  --d-surface: #fff;
+  --d-fab: #fff;
+  --d-text: #1f1f1f;
+  --d-text-2: #444746;
+  --d-border: #e1e3e1;
+  --d-hover: #f0f4f9;
+  --d-sel: #c2e7ff;
+  --d-sel-text: #001d35;
+  --d-primary: #0b57d0;
+  --d-on-primary: #fff;
+  --d-shadow:
+    0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+  --d-icon: #444746;
+  --d-red: #d93025;
+  --d-blue: #4285f4;
+  --d-green: #188038;
+  --d-radius: 16px;
+
+  @media (prefers-color-scheme: dark) {
+    --d-bg: #1b1b1b;
+    --d-surface: #131314;
+    --d-fab: #37393b;
+    --d-text: #e3e3e3;
+    --d-text-2: #c4c7c5;
+    --d-border: #444746;
+    --d-hover: #282a2c;
+    --d-sel: #004a77;
+    --d-sel-text: #c2e7ff;
+    --d-primary: #a8c7fa;
+    --d-on-primary: #062e6f;
+    --d-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    --d-icon: #c4c7c5;
+    --d-red: #f28b82;
+    --d-blue: #8ab4f8;
+    --d-green: #81c995;
+    color-scheme: dark;
+  }
+
+  color-scheme: light;
+  --font-main: "Google Sans", Roboto, "Segoe UI", system-ui, sans-serif;
+
+  /* copyparty's own theme variables, remapped onto the palette above */
+  --fg: var(--d-text);
+  --fg-max: var(--d-text);
+  --fg2-max: var(--d-sel-text);
+  --fg-weak: var(--d-text-2);
+  --f-gray: var(--d-text-2);
+  --bgg: var(--d-bg);
+  --bg: var(--d-surface);
+  --bg-max: var(--d-surface);
+  --bg-d1: var(--d-hover);
+  --bg-d2: var(--d-hover);
+  --bg-d3: var(--d-hover);
+  --bg-u1: var(--d-surface);
+  --bg-u2: var(--d-surface);
+  --bg-u3: var(--d-surface);
+  --bg-u4: var(--d-surface);
+  --bg-u5: var(--d-border);
+  --bg-u6: var(--d-border);
+  --row-alt: var(--d-surface);
+  --tree-bg: var(--d-bg);
+  --scroll: var(--d-border);
+  --a: var(--d-text);
+  --a-b: var(--d-primary);
+  --a-hil: var(--d-text);
+  --a-h-bg: transparent;
+  --a-gray: var(--d-text-2);
+  --a-dark: var(--d-primary);
+  --tab-alt: var(--d-primary);
+  --btn-fg: var(--d-text);
+  --btn-bg: transparent;
+  --btn-bs: none;
+  --btn-bb: none;
+  --btn-h-fg: var(--d-text);
+  --btn-h-bg: var(--d-hover);
+  --btn-h-bs: none;
+  --btn-h-bb: none;
+  --btn-1-fg: var(--d-on-primary);
+  --btn-1-bg: var(--d-primary);
+  --btn-1-bs: none;
+  --btn-1-bb: none;
+  --btn-1h-fg: var(--d-on-primary);
+  --btn-1h-bg: var(--d-primary);
+  --btn-1h-bs: none;
+  --btn-1h-bb: none;
+  --txt-bg: var(--d-surface);
+  --txt-sh: transparent;
+  --op-a-sh: transparent;
+  --op-aa-fg: var(--d-sel-text);
+  --op-aa-bg: var(--d-sel);
+  --op-aa-sh: none;
+  --sel-bg: var(--d-sel);
+  --sel-fg: var(--d-sel-text);
+  --g-fg: var(--d-text);
+  --g-dfg: var(--d-text);
+  --g-bg: var(--d-surface);
+  --g-b1: var(--d-border);
+  --g-b2: var(--d-border);
+  --g-g1: var(--d-surface);
+  --g-g2: var(--d-border);
+  --g-f-fg: var(--d-text);
+  --g-f-bg: var(--d-hover);
+  --g-f-b1: var(--d-border);
+  --g-sh: transparent;
+  --g-sel-fg: var(--d-sel-text);
+  --g-sel-bg: var(--d-sel);
+  --g-sel-b1: var(--d-sel);
+  --g-sel-sh: transparent;
+  --g-fsel-bg: var(--d-sel);
+  --g-fsel-b1: var(--d-primary);
+  --g-fsel-ts: transparent;
+  --f-sh1: 0;
+  --f-sh2: 0;
+  --f-sh3: 0;
+  --f-h-b1: var(--d-border);
+  --f-sel-sh: var(--d-primary);
+  --f-play-bg: var(--d-sel);
+  --f-play-fg: var(--d-sel-text);
+  --sort-1: var(--d-primary);
+  --sort-2: var(--d-primary);
+  --sz-b: var(--d-text-2);
+  --sz-k: var(--d-text-2);
+  --sz-m: var(--d-text-2);
+  --sz-g: var(--d-text-2);
+  --sz-t: var(--d-text-2);
+  --sz-p: var(--d-text-2);
+  --srv-1: var(--d-text-2);
+  --srv-2: var(--d-text-2);
+  --srv-3: var(--d-primary);
+  --srv-3b: var(--d-primary);
+  --mp-sh: rgba(0, 0, 0, 0.15);
+  --u2-btn-b1: var(--d-border);
+  --u2-sbtn-b1: var(--d-primary);
+  --u2-tab-bg: transparent;
+  --u2-tab-b1: var(--d-border);
+  --u2-tab-1-fg: var(--d-primary);
+  --u2-tab-1-bg: var(--d-surface);
+  --u2-tab-1-sh: transparent;
+  --u2-tab-1-b1: var(--d-border);
+  --u2-tab-1-b2: var(--d-border);
+  --u2-txt-bg: var(--d-surface);
+  --u2-b1-bg: var(--d-primary);
+  --u2-b2-bg: var(--d-primary);
+
+  /* icons (Material Symbols, Apache 2.0) */
+  --i-folder: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z'/%3E%3C/svg%3E");
+  --i-file: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6H6zm7 7V3.5L18.5 9H13z'/%3E%3C/svg%3E");
+  --i-video: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z'/%3E%3C/svg%3E");
+  --i-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3 3.5-4.5 4.5 6H5l3.5-4.5z'/%3E%3C/svg%3E");
+  --i-audio: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z'/%3E%3C/svg%3E");
+  --i-archive: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.54 5.23l-1.39-1.68C18.88 3.21 18.47 3 18 3H6c-.47 0-.88.21-1.16.55L3.46 5.23C3.17 5.57 3 6.02 3 6.5V19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6.5c0-.48-.17-.93-.46-1.27zM12 17.5L6.5 12H10v-2h4v2h3.5L12 17.5zM5.12 5l.81-1h12l.94 1H5.12z'/%3E%3C/svg%3E");
+  --i-plus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z'/%3E%3C/svg%3E");
+  --i-menu: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z'/%3E%3C/svg%3E");
+  --i-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z'/%3E%3C/svg%3E");
+
+  background: var(--d-bg);
+  text-shadow: none;
+  font-family: var(--font-main);
+
+  body,
+  .opview input,
+  .opview select,
+  #files {
+    font-family: var(--font-main);
+    text-shadow: none;
+  }
+
+  /* file browser */
+  &#ht_brw {
+    /* top toolbar: emoji tabs become labelled buttons */
+    #ops {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px;
+      margin: 0;
+      padding: 40px 24px 8px;
+      border: none;
+      border-radius: 0;
+      background: var(--d-bg);
+      box-shadow: none;
+
+      a {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0;
+        height: 40px;
+        padding: 0 16px;
+        border: none;
+        border-radius: 20px;
+        color: var(--d-text);
+        background: transparent;
+        box-shadow: none;
+        text-shadow: none;
+
+        &::after {
+          font-size: 14px;
+          font-weight: 500;
+        }
+
+        &:hover {
+          background: var(--d-hover);
+        }
+
+        &.act {
+          color: var(--d-sel-text);
+          background: var(--d-sel);
+        }
+      }
+
+      #opa_up {
+        order: -1;
+        height: 56px;
+        margin-right: 12px;
+        padding: 0 20px 0 16px;
+        border-radius: var(--d-radius);
+        background: var(--d-fab);
+        box-shadow: var(--d-shadow);
+
+        &::before {
+          content: "";
+          width: 24px;
+          height: 24px;
+          background: currentColor;
+          mask: var(--i-plus) center / contain no-repeat;
+        }
+
+        &::after {
+          content: "Upload";
+        }
+
+        &:hover,
+        &.act {
+          background: var(--d-hover);
+        }
+      }
+
+      #opa_srch::after {
+        content: "Search";
+      }
+      #opa_del::after {
+        content: "Recent uploads";
+      }
+      #opa_mkd::after {
+        content: "New folder";
+      }
+      #opa_md::after {
+        content: "New text file";
+      }
+      #opa_cfg::after {
+        content: "Settings";
+      }
+      #opa_x::after {
+        content: "Close";
+      }
+
+      #opa_x,
+      #opa_bup,
+      #opa_msg,
+      #opa_auc,
+      #opdesc {
+        display: none;
+      }
+
+      &:has(> a.act:not(#opa_x)) #opa_x {
+        display: inline-flex;
+        order: 99;
+      }
+    }
+
+    /* account / server info strip along the top */
+    #srv_info,
+    #acc_info {
+      top: 12px;
+      font-size: 13px;
+      background: transparent;
+    }
+
+    /* panels opened from the toolbar */
+    .opbox,
+    &.a .opbox,
+    &.c .opbox {
+      margin: 8px 24px;
+      padding: 16px 20px;
+      border: none;
+      border-radius: var(--d-radius);
+      background: var(--d-surface);
+      box-shadow: var(--d-shadow);
+    }
+
+    .opview input[type="text"],
+    .opview select,
+    #files input[type="text"] {
+      padding: 8px 12px;
+      border: 1px solid var(--d-border);
+      border-radius: 8px;
+      box-shadow: none;
+      color: var(--d-text);
+      background: var(--d-surface);
+
+      &:focus {
+        outline: 2px solid var(--d-primary);
+        outline-offset: -1px;
+      }
+    }
+
+    .opview input[type="submit"],
+    #op_bup input[type="submit"] {
+      padding: 8px 20px;
+      border: none;
+      border-radius: 20px;
+      font: 500 14px var(--font-main);
+      color: var(--d-on-primary);
+      background: var(--d-primary);
+      cursor: pointer;
+    }
+
+    .btn {
+      border-radius: 20px;
+      font-size: 1em;
+    }
+
+    /* breadcrumb */
+    #path {
+      margin: 16px 24px 4px;
+      padding: 0;
+      font-size: 22px;
+      color: var(--d-text);
+      text-shadow: none;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      background: transparent;
+
+      line-height: 44px;
+
+      a {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
+        max-width: 320px;
+        padding: 4px 12px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        border-radius: 20px;
+        color: var(--d-text);
+        background: transparent;
+
+        &:hover {
+          background: var(--d-hover);
+        }
+
+        &:last-child {
+          font-weight: 500;
+        }
+      }
+
+      i {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
+        width: auto;
+        height: auto;
+        margin: 0;
+        border: none;
+        transform: none;
+        background: none;
+        font-style: normal;
+        color: var(--d-text-2);
+
+        &::before {
+          content: "›";
+        }
+      }
+
+      #entree + i {
+        display: none;
+      }
+    }
+
+    /* file list */
+    #wrap {
+      margin: 8px 24px 0;
+    }
+
+    #files {
+      width: 100%;
+      border-collapse: collapse;
+
+      thead th {
+        padding: 12px 16px;
+        text-align: left;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--d-text-2);
+        background: var(--d-bg);
+        border-bottom: 1px solid var(--d-border);
+        box-shadow: none;
+
+        a,
+        span {
+          color: var(--d-text-2);
+          font-weight: 500;
+        }
+      }
+
+      th[name="href"] {
+        width: 100%;
+      }
+
+      th[name="lead"],
+      th[name="ext"],
+      tbody td:first-child,
+      tbody td:nth-last-child(2) {
+        display: none;
+      }
+
+      tbody {
+        td,
+        tr:nth-child(2n) td,
+        tr:nth-child(2n + 1) td,
+        tr td + td,
+        tr:nth-child(2n + 1) td + td {
+          padding: 0 16px;
+          height: 48px;
+          font-size: 14px;
+          border-radius: 0;
+          border-bottom: 1px solid var(--d-border);
+          box-shadow: none;
+          background: var(--d-bg);
+        }
+
+        td:nth-child(3),
+        tr td:last-child {
+          font-family: var(--font-main);
+          color: var(--d-text-2);
+          text-align: left;
+        }
+
+        tr:has(> td:nth-child(2) a[href$="/"]) td:nth-child(3) {
+          font-size: 0;
+
+          &::after {
+            content: "—";
+            font-size: 14px;
+          }
+        }
+
+        tr:hover td,
+        tr:hover td + td {
+          background: var(--d-hover);
+          box-shadow: none;
+        }
+
+        tr.sel td,
+        tr.sel td + td,
+        tr.sel span,
+        tr.sel:hover td,
+        tr.sel:focus td {
+          color: var(--d-sel-text);
+          background: var(--d-sel);
+          text-shadow: none;
+        }
+
+        tr:focus td + td,
+        tr:focus:not(.play):not(.sel) td:first-child {
+          background: var(--d-hover);
+          box-shadow: none;
+        }
+
+        tr:focus td:nth-child(2) {
+          box-shadow: 2px 0 0 var(--d-primary) inset;
+        }
+
+        a {
+          margin: 0;
+          padding: 14px 0;
+          color: var(--d-text);
+          font-weight: 500;
+          text-decoration: none;
+
+          &:hover {
+            color: var(--d-text);
+            background: transparent;
+            text-decoration: none;
+          }
+        }
+
+        td:nth-child(2) a:last-child {
+          --icon: var(--i-file);
+          --icon-c: var(--d-icon);
+          display: flex;
+          align-items: center;
+          gap: 16px;
+
+          &::before {
+            content: "";
+            flex: none;
+            width: 20px;
+            height: 20px;
+            background: var(--icon-c);
+            mask: var(--icon) center / contain no-repeat;
+          }
+
+          &[href$="/"] {
+            --icon: var(--i-folder);
+          }
+          &:is(
+            [href$=".mkv" i],
+            [href$=".mp4" i],
+            [href$=".webm" i],
+            [href$=".avi" i],
+            [href$=".mov" i],
+            [href$=".m4v" i]
+          ) {
+            --icon: var(--i-video);
+            --icon-c: var(--d-red);
+          }
+          &:is(
+            [href$=".jpg" i],
+            [href$=".jpeg" i],
+            [href$=".png" i],
+            [href$=".gif" i],
+            [href$=".webp" i],
+            [href$=".avif" i],
+            [href$=".heic" i]
+          ) {
+            --icon: var(--i-image);
+            --icon-c: var(--d-red);
+          }
+          &:is(
+            [href$=".mp3" i],
+            [href$=".flac" i],
+            [href$=".ogg" i],
+            [href$=".opus" i],
+            [href$=".m4a" i],
+            [href$=".wav" i]
+          ) {
+            --icon: var(--i-audio);
+            --icon-c: var(--d-red);
+          }
+          &:is(
+            [href$=".zip" i],
+            [href$=".7z" i],
+            [href$=".rar" i],
+            [href$=".tar" i],
+            [href$=".gz" i],
+            [href$=".xz" i]
+          ) {
+            --icon: var(--i-archive);
+          }
+          &[href$=".pdf" i] {
+            --icon-c: var(--d-red);
+          }
+          &:is(
+            [href$=".txt" i],
+            [href$=".md" i],
+            [href$=".doc" i],
+            [href$=".docx" i],
+            [href$=".odt" i]
+          ) {
+            --icon-c: var(--d-blue);
+          }
+          &:is(
+            [href$=".xls" i],
+            [href$=".xlsx" i],
+            [href$=".csv" i],
+            [href$=".ods" i]
+          ) {
+            --icon-c: var(--d-green);
+          }
+        }
+      }
+    }
+
+    /* folder tree sidebar */
+    #tree,
+    #treeh,
+    #treepar,
+    &.a #tree,
+    &.a #treeh,
+    &.c #tree,
+    &.c #treeh {
+      border: none;
+      border-radius: 0;
+      background: var(--d-bg);
+      box-shadow: none;
+    }
+
+    /* header keeps only the switch back to breadcrumbs */
+    #treeh {
+      display: flex;
+      align-items: center;
+      height: 48px;
+      padding: 0 8px;
+      line-height: normal;
+
+      > a:not(#detree) {
+        display: none;
+      }
+    }
+
+    #detree,
+    #path #entree {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      margin: 0;
+      padding: 0;
+      border-radius: 20px;
+      font-size: 0;
+      vertical-align: middle;
+
+      &::before {
+        content: "";
+        width: 24px;
+        height: 24px;
+        background: var(--d-icon);
+        mask: var(--i-menu) center / contain no-repeat;
+      }
+
+      &:hover {
+        background: var(--d-hover);
+      }
+    }
+
+    #detree::after {
+      content: "Folders";
+      margin-left: 12px;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--d-text);
+    }
+
+    #detree {
+      width: auto;
+      padding: 0 16px 0 8px;
+    }
+
+    #tree {
+      font-size: 14px;
+    }
+
+    .ntree {
+      box-sizing: border-box;
+      left: 0;
+      width: 100%;
+      margin: 0;
+      padding: 0 8px 8px 0;
+      border: none;
+
+      ul {
+        box-sizing: border-box;
+        margin: 0;
+        padding-left: 16px;
+        border: none;
+      }
+
+      li {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        min-height: 0;
+        margin: 0;
+        border: none;
+        white-space: nowrap;
+      }
+
+      li > ul {
+        flex-basis: 100%;
+        min-width: 0;
+      }
+
+      a {
+        border-radius: 16px;
+        color: var(--d-text);
+        text-shadow: none;
+      }
+
+      /* expand/collapse toggle, drawn as a chevron that turns when the folder is open */
+      a:first-child {
+        flex: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 32px;
+        padding: 0;
+        font-size: 0;
+        line-height: 0;
+        background: transparent;
+
+        &::before {
+          content: "";
+          width: 20px;
+          height: 20px;
+          background: var(--d-text-2);
+          mask: var(--i-chevron) center / contain no-repeat;
+          transition: transform 0.15s;
+        }
+      }
+
+      li:has(> ul) > a:first-child::before {
+        transform: rotate(90deg);
+      }
+
+      a + a,
+      &.nowrap a + a,
+      a + a:hover {
+        position: relative;
+        flex: 1;
+        min-width: 0;
+        width: auto;
+        height: 32px;
+        padding: 0 12px 0 36px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 32px;
+        background: transparent;
+
+        &::before {
+          content: "";
+          position: absolute;
+          left: 10px;
+          top: 7px;
+          width: 18px;
+          height: 18px;
+          background: var(--d-icon);
+          mask: var(--i-folder) center / contain no-repeat;
+        }
+      }
+
+      a + a:hover {
+        color: var(--d-text);
+        background: var(--d-hover);
+      }
+
+      a + a.hl,
+      a + a.sel {
+        font-weight: 500;
+        color: var(--d-sel-text);
+        background: var(--d-sel);
+        box-shadow: none;
+
+        &::before {
+          background: var(--d-sel-text);
+        }
+      }
+    }
+
+    #treepar {
+      border-bottom: 1px solid var(--d-border);
+    }
+
+    /* upload panel */
+    #u2btn {
+      width: auto;
+      max-width: 32em;
+      padding: 32px 24px;
+      border: 2px dashed var(--d-border);
+      border-radius: var(--d-radius);
+      font-size: 16px;
+      color: var(--d-text-2);
+      background: var(--d-surface);
+
+      &:hover {
+        border-color: var(--d-primary);
+        color: var(--d-primary);
+      }
+    }
+
+    /* advanced upload toggles; !important beats the inline display copyparty's permission check sets */
+    #u2conf td.c {
+      display: none !important;
+    }
+
+    /* selection / player bar in the bottom-right corner */
+    #wtoggle {
+      border-radius: var(--d-radius) 0 0 0;
+      color: var(--d-text);
+      background: var(--d-surface);
+      box-shadow: var(--d-shadow);
+    }
+
+    #widgeti {
+      background: var(--d-surface);
+    }
+
+    #repl {
+      display: none;
+    }
+
+    #wfp {
+      font-size: 13px;
+
+      a {
+        color: var(--d-text-2);
+      }
+    }
+
+    @media (max-width: 700px) {
+      #srv_info,
+      #srv_info2,
+      #acc_info > span:not([id]),
+      #files th[name="ts"],
+      #files tbody td:last-child {
+        display: none;
+      }
+
+      #files th[name="href"] {
+        width: auto;
+      }
+
+      #ops {
+        padding: 40px 12px 8px;
+      }
+
+      #path,
+      #wrap {
+        margin-left: 12px;
+        margin-right: 12px;
+      }
+    }
+  }
+
+  /* login, share-unlock and control-panel page */
+  &#ht_spl {
+    #wrap {
+      max-width: 440px;
+      margin: 12vh auto 0;
+      padding: 36px 40px;
+      border-radius: 28px;
+      color: var(--d-text);
+      background: var(--d-surface);
+      box-shadow: var(--d-shadow);
+
+      &:has(.vols, .num) {
+        max-width: 720px;
+      }
+    }
+
+    h1 {
+      margin: 28px 0 16px;
+      border: none;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--d-text);
+    }
+
+    a,
+    .af,
+    .logout,
+    a.r,
+    a.g,
+    #x,
+    #wb,
+    #w,
+    .agr a,
+    td a {
+      padding: 0;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      text-shadow: none;
+      color: var(--d-primary);
+      background: transparent;
+    }
+
+    .af,
+    .logout {
+      font-size: 14px;
+    }
+
+    input[type="password"],
+    input[type="text"] {
+      box-sizing: border-box;
+      width: 100%;
+      margin: 0 0 16px;
+      padding: 12px 14px;
+      border: 1px solid var(--d-border);
+      border-radius: 8px;
+      box-shadow: none;
+      font: 16px var(--font-main);
+      color: var(--d-text);
+      background: var(--d-surface);
+
+      &:focus {
+        outline: 2px solid var(--d-primary);
+        outline-offset: -1px;
+      }
+
+      &::placeholder {
+        color: var(--d-text-2);
+        font-style: normal;
+        font-weight: 400;
+      }
+    }
+
+    input[type="submit"] {
+      float: right;
+      margin: 0;
+      padding: 10px 24px;
+      border: none;
+      border-radius: 20px;
+      box-shadow: none;
+      font: 500 14px var(--font-main);
+      color: var(--d-on-primary);
+      background: var(--d-primary);
+      cursor: pointer;
+    }
+
+    #lo {
+      float: none;
+      color: var(--d-primary);
+      background: transparent;
+      border: 1px solid var(--d-border);
+    }
+
+    #lf::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+
+    table,
+    .vols td,
+    .vols th,
+    .num td {
+      border-color: var(--d-border);
+      color: var(--d-text);
+      background: transparent;
+    }
+
+    #pb,
+    #pb a {
+      color: var(--d-text-2);
+    }
+
+    #repl {
+      display: none;
+    }
+
+    /* signed-out visitors get only the sign-in form */
+    #wrap:has(#b, #z) :is(#a, #v, #b, #w, #cc, .agr),
+    #wrap:has(#z) #msg {
+      display: none;
+    }
+
+    #wrap:has(#b) #l,
+    #z {
+      margin-top: 0;
+      font-size: 0;
+
+      &::after {
+        font-size: 24px;
+      }
+    }
+
+    #wrap:has(#b) #l::after {
+      content: "Sign in";
+    }
+
+    #z::after {
+      content: "This share is password protected";
+    }
+  }
+}
